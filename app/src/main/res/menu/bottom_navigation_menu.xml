@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main"
+        android:enabled="true"
+        android:icon="@drawable/icon_main_48px"
+        android:title="@string/text_label_main"/>
+    <item
+        android:id="@+id/favourites"
+        android:enabled="true"
+        android:icon="@drawable/icon_fav_48px"
+        android:title="@string/text_label_favourites"/>
+    <item
+        android:id="@+id/login"
+        android:enabled="true"
+        android:icon="@drawable/icon_log_48px"
+        android:title="@string/text_label_login"/>
+</menu>

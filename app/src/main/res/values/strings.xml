@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Concerts Watcher</string>
+    <string name="text_label_login">Profile</string>
+    <string name="text_label_favourites">Favourites</string>
+    <string name="text_label_main">Home</string>
+    <string name="search">Search</string>
+    <string name="content_description_search">Search</string>
+    <string name="page_title">Title</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_main_new">MainActivityNew</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="radiobutton_artist">Artist</string>
+    <string name="radiobutton_venue">Venue</string>
+    <string name="radiobutton_location">Location</string>
+    <string name="card_name">Name</string>
+    <string name="card_location_name">Location name</string>
+    <string name="card_combo_date">start date - end date</string>
+    <string name="card_image">Event image</string>
+    <string name="card_details">details</string>
+</resources>
