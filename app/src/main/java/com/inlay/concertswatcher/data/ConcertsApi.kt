@@ -15,7 +15,7 @@ import retrofit2.http.Query
 
 interface ConcertsApi {
     @Headers(
-        "X-RapidAPI-Key $CONCERTS_API_KEY",
+        "X-RapidAPI-Key: $CONCERTS_API_KEY",
         "X-RapidAPI-Host: concerts-artists-events-tracker.p.rapidapi.com"
     )
     @GET("https://concerts-artists-events-tracker.p.rapidapi.com/{artist}?")

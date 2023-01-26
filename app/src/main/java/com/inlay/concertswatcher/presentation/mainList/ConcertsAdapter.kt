@@ -2,33 +2,18 @@ package com.inlay.concertswatcher.presentation.mainList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.inlay.concertswatcher.data.Data
 import com.inlay.concertswatcher.databinding.ConcertItemBinding
+import kotlinx.coroutines.CoroutineScope
 
-//class ConcertsAdapter(private val dataList: List<Data>?) :
-//    RecyclerView.Adapter<ConcertsDataViewHolder>() {
-//    private lateinit var binding: ConcertItemBinding
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConcertsDataViewHolder {
-//        binding = ConcertItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//        return ConcertsDataViewHolder(binding)
-//    }
-//
-//    override fun onBindViewHolder(holder: ConcertsDataViewHolder, position: Int) {
-//        val concert = dataList?.get(position)
-//        val location = concert?.location
-//        if (concert != null && location != null) {
-//            holder.bind(concert, location)
-//        }
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return dataList?.size!!
-//    }
-//}
-class ConcertsAdapter(private val dataList: List<Data>?) :
+class ConcertsAdapter(private val dataList: List<Data>?, private val scope: CoroutineScope) :
     RecyclerView.Adapter<ConcertsDataViewHolder>() {
     private lateinit var binding: ConcertItemBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConcertsDataViewHolder {
         binding = ConcertItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ConcertsDataViewHolder(binding)
@@ -44,5 +29,15 @@ class ConcertsAdapter(private val dataList: List<Data>?) :
 
     override fun getItemCount(): Int {
         return dataList?.size!!
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("imageSource")
+        fun loadImage(view: ImageView, image: String) {
+//            scope.launch {
+            view.load(image)
+//            }
+        }
     }
 }

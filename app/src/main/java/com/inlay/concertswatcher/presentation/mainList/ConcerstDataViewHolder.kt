@@ -9,7 +9,7 @@ class ConcertsDataViewHolder(private val binding: ConcertItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(
         data: Data?, location: Location,
-//             detailsClickListener: DetailsClickListener
+//             detailsClickListener: DetailsClickListener,
     ) {
         binding.data = data
         binding.location = location

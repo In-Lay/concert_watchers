@@ -1,6 +1,5 @@
 package com.inlay.concertswatcher.presentation.mainList
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -18,20 +17,19 @@ class AppMainListViewModel(private val getConcerts: GetConcerts) : MainListViewM
     private val _concertsData = MutableLiveData<ConcertsData>()
     override val concertsData: LiveData<ConcertsData> = _concertsData
 
-    //TODO Possible problems with ViewModel
-    init {
-        Log.d("MainListFragmentLog", "MainListViewModel init")
-    }
-
     override fun getConcerts(body: String, name: String, page: Int) {
         _isLoading.postValue(true)
         viewModelScope.launch {
-            val concerts = getConcerts.getConcerts(body, name, page)
-            _isLoading.postValue(false)
-            if (concerts.isSuccessful) {
-                _concertsData.postValue(concerts.body())
-            } else {
-                _error.postValue(concerts.message())
+            try {
+                val concerts = getConcerts.getConcerts(body, name, page)
+                _isLoading.postValue(false)
+                if (concerts.isSuccessful) {
+                    _concertsData.postValue(concerts.body())
+                } else {
+                    _error.postValue(concerts.message())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

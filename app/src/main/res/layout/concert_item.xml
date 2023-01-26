@@ -12,7 +12,6 @@
         <variable
             name="location"
             type="com.inlay.concertswatcher.data.Location" />
-
         <!--        <variable-->
         <!--            name="detailsClickListener"-->
         <!--            type="com.inlay.concertswatcher.presentation.mainList.DetailsClickListener" />-->
@@ -37,8 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 android:contentDescription="@string/card_image"
-                android:scaleType="centerCrop" />
-            <!--                app:profileImage="@{data.image}" />-->
+                android:scaleType="centerCrop"
+                app:imageSource="@{data.image}" />
+            <!--                app:profileImage="@{data.image}" -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@{data.startDate.substring(0,16).replace('-','.').replace('T', ' ') + '-' + data.endDate.replace('-','.')}"
+                    android:text="@{data.startDate.replace('-','.') + ' ' + '-' + ' ' + data.endDate.replace('-','.')}"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="@string/card_combo_date" />

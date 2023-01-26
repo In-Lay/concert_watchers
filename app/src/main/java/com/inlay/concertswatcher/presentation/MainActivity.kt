@@ -6,7 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.inlay.concertswatcher.R
@@ -18,14 +18,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("MainActivityTag", "Activity Created")
+        Log.d("ViewModelTag", "Main Activity")
         binding = ActivityMainBinding.inflate(layoutInflater)
-        Log.d("MainActivityTag", "Layout Inflated")
         setContentView(binding.root)
-        Log.d("MainActivityTag", "Content View Set")
         setSupportActionBar(binding.topAppBar)
 
-        navController = findNavController(R.id.fragment_container_view)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+        navController = navHostFragment.navController
+
         supportActionBar?.title = "Home"
 
         handleUIComponents()
