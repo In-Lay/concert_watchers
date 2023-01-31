@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_main_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_main_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favourites"
@@ -27,4 +30,8 @@
         android:id="@+id/login"
         android:name="com.inlay.login.presentation.LoginFragment"
         android:label="Login" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.inlay.details.presentation.DetailsFragment"
+        android:label="DetailsFragment" />
 </navigation>

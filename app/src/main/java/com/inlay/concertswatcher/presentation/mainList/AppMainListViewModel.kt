@@ -1,5 +1,6 @@
 package com.inlay.concertswatcher.presentation.mainList
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -32,5 +33,10 @@ class AppMainListViewModel(private val getConcerts: GetConcerts) : MainListViewM
                 e.printStackTrace()
             }
         }
+    }
+
+    override fun addTempConcerts(concertsData: ConcertsData) {
+        Log.d("ViewModelTag", "Called")
+        _concertsData.postValue(concertsData)
     }
 }

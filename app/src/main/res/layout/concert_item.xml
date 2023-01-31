@@ -12,9 +12,10 @@
         <variable
             name="location"
             type="com.inlay.concertswatcher.data.Location" />
-        <!--        <variable-->
-        <!--            name="detailsClickListener"-->
-        <!--            type="com.inlay.concertswatcher.presentation.mainList.DetailsClickListener" />-->
+
+        <variable
+            name="detailsClickListener"
+            type="com.inlay.concertswatcher.presentation.mainList.DetailsClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -24,7 +25,6 @@
         app:cardElevation="0dp"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
-        <!--    tools:context=""-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +38,6 @@
                 android:contentDescription="@string/card_image"
                 android:scaleType="centerCrop"
                 app:imageSource="@{data.image}" />
-            <!--                app:profileImage="@{data.image}" -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,7 +52,6 @@
                     android:text="@{data.name}"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                     tools:text="@string/card_name" />
-                <!--                    android:text="@{data.name}"-->
 
                 <TextView
                     android:id="@+id/card_location"
@@ -64,28 +62,27 @@
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="@string/card_location_name" />
-                <!--                    android:text="@{location.name}"-->
 
                 <TextView
                     android:id="@+id/card_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@{data.startDate.replace('-','.') + ' ' + '-' + ' ' + data.endDate.replace('-','.')}"
+                    android:text="@{data.startDate.length() &lt;= 10 ? data.startDate.replace('-','.') + ' ' + '-' + ' ' + data.endDate.replace('-','.') : data.startDate.substring(0,10).replace('-','.') + ' ' + data.startDate.substring(11, 16).replace('T',' ') + ' ' + '-' + ' ' + data.endDate.replace('-','.')}"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="@string/card_combo_date" />
-                <!--                    android:text="@{data.startDate.substring(0,16).replace('-','.').replace('T', ' ') + '-' + data.endDate.replace('-','.')}"-->
 
                 <TextView
                     android:id="@+id/card_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:onClick="@{(view) -> detailsClickListener.detailsClicked(view, data)}"
                     android:text="@string/card_details"
                     android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary" />
-                <!--                    android:onClick="@{() -> detailsClickListener.detailsClicked(data)}" -->
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

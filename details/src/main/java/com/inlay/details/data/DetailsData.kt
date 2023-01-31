@@ -1,7 +1,8 @@
-package com.inlay.concertswatcher.data
+package com.inlay.details.data
 
-data class ConcertsData(
-    val data: List<Data>, val page: String
+data class DetailsData(
+    val data: List<Data>,
+    val page: String
 )
 
 data class Data(
@@ -18,7 +19,10 @@ data class Data(
 )
 
 data class Location(
-    val type: String?, val address: Address, val geo: Geo, val name: String
+    val type: String?,
+    val address: Address,
+    val geo: Geo,
+    val name: String
 )
 
 data class Performer(
@@ -34,5 +38,7 @@ data class Address(
 )
 
 data class Geo(
-    val type: String?, val latitude: Double, val longitude: Double
+    val type: String?,
+    val latitude: Double,
+    val longitude: Double
 )

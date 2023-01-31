@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Concerts Watcher</string>
+    <string name="text_label_login">Profile</string>
+    <string name="text_label_favourites">Favourites</string>
+    <string name="text_label_main">Home</string>
+    <string name="search">Search</string>
+    <string name="content_description_search">Search</string>
+    <string name="page_title">Title</string>
+    <string name="title_activity_second">SecondActivity</string>
+
+    <string name="details_name">Name</string>
+    <string name="location_name">Location name</string>
+    <string name="combo_date">start date - end date</string>
+    <string name="details_image">Event image</string>
+    <string name="details_fav_icon">Favourite</string>
+    <string name="details_combo_date">D A T E</string>
+    <string name="details_address">Country, City, Street Str. \nPlace</string>
+    <string name="address">A D D R E S S</string>
+    <string name="description">D E T A I L S</string>
+    <string name="details_additional_details">Additional content description/details</string>
+    <string name="details_event_status">Event Status</string>
+    <string name="maps">M A P S</string>
+</resources>

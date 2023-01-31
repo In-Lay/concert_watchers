@@ -2,6 +2,7 @@ package com.inlay.concertswatcher
 
 import android.app.Application
 import com.inlay.concertswatcher.di.mainModule
+import com.inlay.details.di.detailsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -13,7 +14,7 @@ class SampleApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@SampleApp)
-            modules(mainModule)
+            modules(mainModule, detailsModule)
         }
     }
 }

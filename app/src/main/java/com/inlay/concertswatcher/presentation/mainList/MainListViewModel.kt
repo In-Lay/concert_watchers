@@ -11,4 +11,6 @@ abstract class MainListViewModel : ViewModel() {
 
 
     abstract fun getConcerts(body: String, name: String, page: Int)
+
+    abstract fun addTempConcerts(concertsData: ConcertsData)
 }

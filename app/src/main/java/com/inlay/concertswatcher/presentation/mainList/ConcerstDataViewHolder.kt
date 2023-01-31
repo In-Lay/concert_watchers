@@ -8,11 +8,12 @@ import com.inlay.concertswatcher.databinding.ConcertItemBinding
 class ConcertsDataViewHolder(private val binding: ConcertItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(
-        data: Data?, location: Location,
-//             detailsClickListener: DetailsClickListener,
+        data: Data?,
+        location: Location,
+        detailsClickListener: DetailsClickListener
     ) {
         binding.data = data
         binding.location = location
-//        binding.detailsClickListener = detailsClickListener
+        binding.detailsClickListener = detailsClickListener
     }
 }
