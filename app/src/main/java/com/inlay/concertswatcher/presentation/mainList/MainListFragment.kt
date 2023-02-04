@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.inlay.concertswatcher.R
+import com.inlay.concertswatcher.data.ConcertsData
 import com.inlay.concertswatcher.databinding.FragmentMainListBinding
 import com.inlay.details.presentation.DetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -29,6 +31,7 @@ class MainListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_list, container, false)
+//        (context as? AppCompatActivity)?.supportActionBar?.show()
 
         recyclerView = binding.recyclerView
         return binding.root
@@ -36,14 +39,16 @@ class MainListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        Log.d("FragmentTag", "${(context as? AppCompatActivity)?.supportActionBar?.hide()}")
 
-//        viewModel.getConcerts("artist", "Ed Sheeran", 1)
-//        val jsonString = readJson()
-//        val testModel = Gson().fromJson(jsonString, ConcertsData::class.java)
 
-//        if (viewModel.concertsData.value == null) viewModel.addTempConcerts(testModel)
+        val jsonString = readJson()
+        //TODO Move to DI
+        val testModel = Gson().fromJson(jsonString, ConcertsData::class.java)
 
-        if (viewModel.concertsData.value == null) viewModel.getConcerts("artist", "Ed Sheeran", 1)
+        if (viewModel.concertsData.value == null) viewModel.addTempConcerts(testModel)
+
+//        if (viewModel.concertsData.value == null) viewModel.getConcerts("artist", "Ed Sheeran", 1)
 
         viewModel.error.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) Toast.makeText(context, it, Toast.LENGTH_LONG).show()

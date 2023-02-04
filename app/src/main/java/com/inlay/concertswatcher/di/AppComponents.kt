@@ -10,6 +10,8 @@ import com.inlay.concertswatcher.domain.mainList.GetConcerts
 import com.inlay.concertswatcher.domain.mainList.GetConcertsImpl
 import com.inlay.concertswatcher.presentation.mainList.AppMainListViewModel
 import com.inlay.concertswatcher.presentation.mainList.MainListViewModel
+import com.inlay.concertswatcher.presentation.search.AppSearchViewModel
+import com.inlay.concertswatcher.presentation.search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -29,9 +31,6 @@ val mainModule = module {
 //
 //}
 //
-//val searchScreen = module {
-//
-//}
-
-//val appComponents = mainModule + favouriteScreen + searchScreen
-
+val searchScreen = module {
+    viewModel<SearchViewModel> { AppSearchViewModel() }
+}

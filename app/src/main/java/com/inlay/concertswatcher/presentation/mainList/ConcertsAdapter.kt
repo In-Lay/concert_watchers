@@ -28,10 +28,9 @@ class ConcertsAdapter(
 
     override fun onBindViewHolder(holder: ConcertsDataViewHolder, position: Int) {
         val concert = dataList?.get(position)
-        val location = concert?.location
 
-        if (concert != null && location != null) {
-            holder.bind(concert, location, this)
+        if (concert != null) {
+            holder.bind(concert, this)
         }
     }
 
@@ -50,9 +49,7 @@ class ConcertsAdapter(
         @JvmStatic
         @BindingAdapter("imageSource")
         fun loadImage(view: ImageView, image: String) {
-//            scope.launch {
             view.load(image)
-//            }
         }
     }
 }

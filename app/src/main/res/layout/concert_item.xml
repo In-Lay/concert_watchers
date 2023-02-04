@@ -10,10 +10,6 @@
             type="com.inlay.concertswatcher.data.Data" />
 
         <variable
-            name="location"
-            type="com.inlay.concertswatcher.data.Location" />
-
-        <variable
             name="detailsClickListener"
             type="com.inlay.concertswatcher.presentation.mainList.DetailsClickListener" />
     </data>
@@ -58,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{location.name}"
+                    android:text="@{data.location.name}"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="@string/card_location_name" />

@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":map"))
 
     implementation 'io.insert-koin:koin-android:3.3.2'
     implementation "io.insert-koin:koin-core:3.3.2"
