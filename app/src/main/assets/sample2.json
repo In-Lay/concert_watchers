@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "@context": "http://schema.org",
+      "@type": "MusicEvent",
+      "description": "Rihanna at Mühle Hunziken at 2023-08-24T17:00:00+0200",
+      "endDate": "2023-08-24",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "image": "https://images.sk-static.com/images/media/profile_images/events/40880611/huge_avatar",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "Switzerland",
+          "addressLocality": "Rubigen",
+          "postalCode": "CH-3113",
+          "streetAddress": "Hunziken"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.89116,
+          "longitude": 7.54161
+        },
+        "name": "Mühle Hunziken"
+      },
+      "name": "Rihanna",
+      "performer": [
+        {
+          "@type": "MusicGroup",
+          "name": "Rihanna"
+        }
+      ],
+      "startDate": "2023-08-24T17:00:00+0200"
+    }
+  ],
+  "page": "1"
+}

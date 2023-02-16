@@ -4,9 +4,9 @@
 
     <data>
 
-        <!--        <variable-->
-        <!--            name="addDateOnClick"-->
-        <!--            type="com.inlay.concertswatcher.presentation.search.DateOnClickListener" />-->
+        <variable
+            name="viewModel"
+            type="com.inlay.concertswatcher.presentation.search.viewModel.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,14 +22,13 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_marginEnd="16dp"
             android:iconifiedByDefault="false"
+            android:imeOptions="actionDone"
             android:inputType="text"
             android:queryHint="Search here"
             android:text="Search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </EditText>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
             android:id="@+id/radio_group"
@@ -44,7 +43,6 @@
                 android:id="@+id/artist_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/radiobutton_states"
                 android:checked="true"
                 android:text="@string/radiobutton_artist" />
 
@@ -52,36 +50,24 @@
                 android:id="@+id/venue_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/radiobutton_states"
                 android:text="@string/radiobutton_venue" />
 
             <RadioButton
                 android:id="@+id/location_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/radiobutton_states"
                 android:text="@string/radiobutton_location" />
         </RadioGroup>
 
-        <!--        <DatePicker-->
-        <!--            android:id="@+id/date_picker"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="16dp"-->
-        <!--            android:datePickerMode="spinner"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/radio_group" />-->
-        <!--        <Button-->
-        <!--            android:id="@+id/date_button"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="16dp"-->
-        <!--            android:text="Add date"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/radio_group"-->
-        <!--            app:onClick="@{()-> addDateOnClick}" />-->
+        <Button
+            android:id="@+id/date_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.openDateDialog()}"
+            android:text="Add date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radio_group" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,15 +6,12 @@
 
     <fragment
         android:id="@+id/main"
-        android:name="com.inlay.concertswatcher.presentation.mainList.MainListFragment"
+        android:name="com.inlay.concertswatcher.presentation.mainList.fragment.MainListFragment"
         android:label="Home">
 
         <action
             android:id="@+id/action_main_to_searchFragment"
             app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_main_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favourites"
@@ -24,14 +21,10 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.inlay.concertswatcher.presentation.search.SearchFragment"
+        android:name="com.inlay.concertswatcher.presentation.search.fragment.SearchFragment"
         android:label="Search" />
     <fragment
         android:id="@+id/login"
-        android:name="com.inlay.login.presentation.LoginFragment"
+        android:name="com.inlay.login.presentation.fragment.LoginFragment"
         android:label="Login" />
-    <fragment
-        android:id="@+id/detailsFragment"
-        android:name="com.inlay.details.presentation.DetailsFragment"
-        android:label="DetailsFragment" />
 </navigation>
