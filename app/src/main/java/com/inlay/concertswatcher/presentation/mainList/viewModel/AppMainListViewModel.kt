@@ -72,4 +72,8 @@ class AppMainListViewModel(private val searchViewModel: SearchViewModel) : MainL
             "MainListVM initConcertsData; concertsData from searchVM AFTER: ${searchViewModel.searchConcertsData.value}"
         )
     }
+
+    override fun setItemModelToNull() {
+        _itemNetworkModelMutableLiveData.value = null
+    }
 }

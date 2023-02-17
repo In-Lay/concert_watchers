@@ -11,6 +11,11 @@ class AppConcertsApiService(private val concertsApi: ConcertsApi) : ConcertsApiS
         minDate: String?,
         maxDate: String?,
         page: Int
-    ): Response<ConcertsDataNetworkModel> =
-        concertsApi.getConcertsData(body, name, minDate, maxDate, page)
+    ): Response<ConcertsDataNetworkModel> {
+        return if (body == "venue/past")
+            concertsApi.getVenueConcertsData(name, minDate, maxDate, page)
+        else {
+            concertsApi.getConcertsData(body, name, minDate, maxDate, page)
+        }
+    }
 }
