@@ -52,6 +52,7 @@ class DatePickerFragment(private val onDatePicked: (String?, String?) -> Unit) :
                 startDate = simpleDateFormat.format(calendar.time)
             }
             binding.vDatePicker.minDate = tempMinDate
+            //TODO Check
             binding.buttonOk.text = "OK"
         } else if (endDate == null) {
             binding.vDatePicker.let {

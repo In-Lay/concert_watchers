@@ -2,8 +2,10 @@ package com.inlay.concertswatcher.presentation
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -27,14 +29,21 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Home"
 
-        handleUIComponents()
-    }
+        addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.top_app_bar, menu)
+            }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.search) {
-            navController.navigate(R.id.action_main_to_searchFragment)
-        }
-        return super.onOptionsItemSelected(item)
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                navController.navigate(R.id.action_main_to_searchFragment)
+                supportActionBar?.title = "Search"
+                menuItem.isVisible = false
+                menuItem.isEnabled = false
+                return true
+            }
+        })
+
+        handleUIComponents()
     }
 
     private fun handleUIComponents() {
@@ -64,10 +73,5 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_app_bar, menu)
-        return super.onPrepareOptionsMenu(menu)
     }
 }

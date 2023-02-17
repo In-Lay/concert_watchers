@@ -6,11 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.inlay.concertswatcher.data.models.ConcertsDataNetworkModel
 import com.inlay.concertswatcher.domain.mainList.GetConcerts
+import com.inlay.concertswatcher.domain.mainList.repoes.FlowingConcertsDataRepository
 import com.inlay.concertswatcher.presentation.search.models.SearchUiModel
 import kotlinx.coroutines.launch
 
-class AppSearchViewModel(private val getConcerts: GetConcerts) : SearchViewModel() {
-
+class AppSearchViewModel(
+    private val getConcerts: GetConcerts,
+    private val dataRepository: FlowingConcertsDataRepository
+) : SearchViewModel() {
     private val _searchConcertsData = MutableLiveData<ConcertsDataNetworkModel>()
     override val searchConcertsData: LiveData<ConcertsDataNetworkModel> = _searchConcertsData
 
@@ -58,7 +61,9 @@ class AppSearchViewModel(private val getConcerts: GetConcerts) : SearchViewModel
             "DetailsFlag",
             "SearchVM addTempConcerts; searchConcertsData BEFORE postValue: ${searchConcertsData.value}"
         )
+
         _searchConcertsData.value = concertsDataNetworkModel
+        dataRepository.addTempConcerts(_searchConcertsData.value)
         Log.d(
             "DetailsFlag",
             "SearchVM addTempConcerts; searchConcertsData AFTER postValue: ${searchConcertsData.value}"

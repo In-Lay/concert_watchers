@@ -9,7 +9,9 @@ import com.inlay.concertswatcher.data.repoes.ConcertsRepoImpl
 import com.inlay.concertswatcher.domain.mainList.GetConcerts
 import com.inlay.concertswatcher.domain.mainList.GetConcertsImpl
 import com.inlay.concertswatcher.domain.mainList.api.ConcertsApiService
+import com.inlay.concertswatcher.domain.mainList.repoes.AppFlowingConcertsDataRepository
 import com.inlay.concertswatcher.domain.mainList.repoes.ConcertsRepository
+import com.inlay.concertswatcher.domain.mainList.repoes.FlowingConcertsDataRepository
 import com.inlay.concertswatcher.presentation.AppNavigator
 import com.inlay.concertswatcher.presentation.Navigator
 import com.inlay.concertswatcher.presentation.ext.getFragmentActivity
@@ -34,7 +36,9 @@ val mainModule = module {
 
     factory<Navigator> { (activity: Activity) -> AppNavigator(activity) }
 
-    viewModel<MainListViewModel> { AppMainListViewModel(get()) }
+    single<FlowingConcertsDataRepository> { AppFlowingConcertsDataRepository() }
+
+    viewModel<MainListViewModel> { AppMainListViewModel(get(), get()) }
 
     viewModel<ItemViewModel> { (context: Context) ->
         AppItemViewModel(context.getFragmentActivity().getViewModel())
@@ -46,5 +50,6 @@ val mainModule = module {
 //}
 
 val searchScreen = module {
-    viewModel<SearchViewModel> { AppSearchViewModel(get()) }
+    //TODO create as scope
+    viewModel<SearchViewModel> { AppSearchViewModel(get(), get()) }
 }

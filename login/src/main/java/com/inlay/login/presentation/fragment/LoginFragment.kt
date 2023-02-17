@@ -8,8 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.inlay.login.R
 import com.inlay.login.databinding.FragmentLoginBinding
+import com.inlay.login.presentation.LoginOnClickFunctions
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), LoginOnClickFunctions {
     private lateinit var binding: FragmentLoginBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -21,5 +22,17 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onLoginClicked() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onRegisterClicked() {
+        TODO("Not yet implemented")
+    }
+
+    fun isEmailValid(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
