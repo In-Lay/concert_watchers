@@ -33,8 +33,6 @@ class DetailsActivity : AppCompatActivity() {
         binding.detailsViewModel = detailsViewModel
     }
 
-    //TODO Handle onBackPressed
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> finish()

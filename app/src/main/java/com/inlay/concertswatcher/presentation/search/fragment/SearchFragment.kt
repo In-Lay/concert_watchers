@@ -86,6 +86,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+
     private val onDatePicked: (String?, String?) -> Unit = { minDate, maxDate ->
         modelMinDate = minDate
         modelMaxDate = maxDate
