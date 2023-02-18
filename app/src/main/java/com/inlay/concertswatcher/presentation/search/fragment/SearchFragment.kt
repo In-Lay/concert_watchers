@@ -15,10 +15,10 @@ import com.google.gson.Gson
 import com.inlay.concertswatcher.R
 import com.inlay.concertswatcher.data.models.ConcertsDataNetworkModel
 import com.inlay.concertswatcher.databinding.FragmentSearchBinding
-import com.inlay.concertswatcher.presentation.search.models.SearchUiModel
 import com.inlay.concertswatcher.presentation.search.viewModel.SearchViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import java.io.IOException
+import java.net.URLEncoder
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
@@ -66,18 +66,18 @@ class SearchFragment : Fragment() {
         val jsonString = readJson()
         val testModel = Gson().fromJson(jsonString, ConcertsDataNetworkModel::class.java)
 
-        binding.searchView.setOnEditorActionListener { v, actionId, _ ->
+        binding.searchView.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 if (modelPath == PathEnum.VENUE.path && modelMinDate == null || modelPath == PathEnum.LOCATION.path && modelMinDate == null) {
                     Toast.makeText(context, "Pick date first", Toast.LENGTH_LONG).show()
                 } else {
-                    searchViewModel.sendSearchUiModel(
-                        SearchUiModel(
-                            modelPath, v.text.toString(), modelMinDate, modelMaxDate
-                        )
-                    )
+//                    searchViewModel.sendSearchUiModel(
+//                        SearchUiModel(
+//                            modelPath, v.text.toString(), modelMinDate, modelMaxDate
+//                        )
+//                    )
                     Log.d("DetailsFlag", "SearchVM search complete with result: $testModel")
-//                    searchViewModel.addTempConcerts(testModel)
+                    searchViewModel.addTempConcerts(testModel)
                 }
             }
             true
@@ -106,6 +106,6 @@ class SearchFragment : Fragment() {
     }
 
     private enum class PathEnum(val path: String) {
-        ARTIST("artist"), LOCATION("location"), VENUE("venue/past")
+        ARTIST("artist"), LOCATION("location"), VENUE(URLEncoder.encode("venue%2Fpast", "UTF-8"))
     }
 }

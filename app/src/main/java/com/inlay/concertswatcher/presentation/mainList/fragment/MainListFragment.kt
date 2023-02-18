@@ -55,10 +55,7 @@ class MainListFragment : Fragment() {
 
         //TODO if true always opens Details
         viewModel.itemNetworkModelMutableLiveData.observe(viewLifecycleOwner) { itemModel ->
-            itemModel?.let {
-                navigator.goToDetails(it)
-                viewModel.setItemModelToNull()
-            }
+            itemModel?.let { navigator.goToDetails(it) }
         }
 
         subscribeToData()
@@ -66,7 +63,7 @@ class MainListFragment : Fragment() {
 
     private fun subscribeToData() {
         Log.d("DetailsFlag", "subscribeToData called")
-//        viewModel.initConcertsData()
+        viewModel.initConcertsData()
         viewModel.concertsData.observe(viewLifecycleOwner) {
             val concerts = it.concertItemsNetworkModel
             Log.d("DetailsFlag", "MainListFragment subscribeToData: inside observe block $it")
