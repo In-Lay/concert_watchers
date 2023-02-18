@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,11 +11,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.inlay.concertswatcher.R
 import com.inlay.concertswatcher.databinding.ActivityMainBinding
+import org.koin.android.ext.android.getKoin
+import org.koin.androidx.scope.ScopeActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ScopeActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-
+    override val scope = getKoin().createScope<MainActivity>("searchScope")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

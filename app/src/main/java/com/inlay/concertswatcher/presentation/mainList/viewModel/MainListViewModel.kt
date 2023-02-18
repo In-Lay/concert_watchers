@@ -17,5 +17,5 @@ abstract class MainListViewModel : ViewModel() {
 
     abstract fun goToDetails(itemData: ConcertItemNetworkModel?)
 
-    abstract fun initConcertsData()
+    abstract fun setItemDataToNull()
 }

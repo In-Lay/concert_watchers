@@ -1,7 +1,6 @@
 package com.inlay.concertswatcher.presentation.mainList.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +40,6 @@ class MainListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("DetailsFlag", "MainListFragment onViewCreated")
         val jsonString = readJson()
         val testModel = Gson().fromJson(jsonString, ConcertsDataNetworkModel::class.java)
 
@@ -55,18 +53,18 @@ class MainListFragment : Fragment() {
 
         //TODO if true always opens Details
         viewModel.itemNetworkModelMutableLiveData.observe(viewLifecycleOwner) { itemModel ->
-            itemModel?.let { navigator.goToDetails(it) }
+            itemModel?.let {
+                navigator.goToDetails(it)
+                viewModel.setItemDataToNull()
+            }
         }
 
         subscribeToData()
     }
 
     private fun subscribeToData() {
-        Log.d("DetailsFlag", "subscribeToData called")
-        viewModel.initConcertsData()
         viewModel.concertsData.observe(viewLifecycleOwner) {
             val concerts = it.concertItemsNetworkModel
-            Log.d("DetailsFlag", "MainListFragment subscribeToData: inside observe block $it")
             val concertsAdapter = ConcertsAdapter(concerts)
 
             recyclerView.adapter = concertsAdapter

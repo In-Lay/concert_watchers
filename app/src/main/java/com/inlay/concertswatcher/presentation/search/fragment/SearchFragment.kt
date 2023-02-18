@@ -1,7 +1,6 @@
 package com.inlay.concertswatcher.presentation.search.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -16,14 +15,15 @@ import com.inlay.concertswatcher.R
 import com.inlay.concertswatcher.data.models.ConcertsDataNetworkModel
 import com.inlay.concertswatcher.databinding.FragmentSearchBinding
 import com.inlay.concertswatcher.presentation.search.viewModel.SearchViewModel
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.android.ext.android.getKoin
 import java.io.IOException
-import java.net.URLEncoder
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
 
-    private val searchViewModel by activityViewModel<SearchViewModel>()
+    private val scope = getKoin().getScope("searchScope")
+    private val searchViewModel: SearchViewModel by scope.inject()
+
     private var modelMinDate: String? = ""
     private var modelMaxDate: String? = ""
     override fun onCreateView(
@@ -76,7 +76,6 @@ class SearchFragment : Fragment() {
 //                            modelPath, v.text.toString(), modelMinDate, modelMaxDate
 //                        )
 //                    )
-                    Log.d("DetailsFlag", "SearchVM search complete with result: $testModel")
                     searchViewModel.addTempConcerts(testModel)
                 }
             }
@@ -106,6 +105,6 @@ class SearchFragment : Fragment() {
     }
 
     private enum class PathEnum(val path: String) {
-        ARTIST("artist"), LOCATION("location"), VENUE(URLEncoder.encode("venue%2Fpast", "UTF-8"))
+        ARTIST("artist"), LOCATION("location"), VENUE("venue/past")
     }
 }

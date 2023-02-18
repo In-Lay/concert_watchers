@@ -27,4 +27,16 @@ interface ConcertsApi {
         @Query("maxDate") maxDate: String?,
         @Query("page") page: Int
     ): Response<ConcertsDataNetworkModel>
+
+    @Headers(
+        "X-RapidAPI-Key: $CONCERTS_API_KEY",
+        "X-RapidAPI-Host: concerts-artists-events-tracker.p.rapidapi.com"
+    )
+    @GET("https://concerts-artists-events-tracker.p.rapidapi.com/venue/past?")
+    suspend fun getVenueConcertsData(
+        @Query("name") name: String,
+        @Query("minDate") minDate: String?,
+        @Query("maxDate") maxDate: String?,
+        @Query("page") page: Int
+    ): Response<ConcertsDataNetworkModel>
 }
