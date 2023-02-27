@@ -33,10 +33,10 @@ class AppItemViewModel(private val mainListViewModel: MainListViewModel) : ItemV
     }
 
     override fun initItemData(itemData: ConcertItemNetworkModel?) {
-
         _itemNetworkModelMutableLiveData.value = itemData
         itemData?.let {
             textName.value = it.name
+
             textLocation.value = it.concertLocationNetworkModel.name
 
             textDate.value = if (it.startDate.length > 10) {

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.inlay.login.presentation.viewModel.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,20 +19,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="112dp"
-            android:text="@string/warning"
+            android:text="@{viewModel.warningText}"
             android:textColor="@color/design_default_color_error"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/warning" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
+            android:afterTextChanged="@{viewModel.updateEmail}"
             android:ems="12"
+            android:focusable="true"
             android:hint="@string/etEmail"
+            android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
@@ -36,14 +44,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textWarning" />
 
-
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:afterTextChanged="@{viewModel.updatePassword}"
             android:ems="12"
+            android:focusable="true"
             android:hint="@string/etPassword"
+            android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:minHeight="48dp"
@@ -55,8 +65,9 @@
             android:id="@+id/buttonLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.onLoginClicked()}"
             android:text="@string/buttonLogin"
             app:layout_constraintStart_toStartOf="@id/etPassword"
             app:layout_constraintTop_toBottomOf="@id/etPassword" />
@@ -65,10 +76,11 @@
             android:id="@+id/buttonRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/buttonRegister"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:onClick="@{() -> viewModel.onRegisterClicked()}"
+            android:text="@string/buttonRegister"
             app:layout_constraintEnd_toEndOf="@id/etPassword"
             app:layout_constraintStart_toEndOf="@+id/buttonLogin"
             app:layout_constraintTop_toBottomOf="@id/etPassword" />

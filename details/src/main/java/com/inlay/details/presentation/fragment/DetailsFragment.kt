@@ -16,10 +16,8 @@ import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
 class DetailsFragment : Fragment() {
-
     private lateinit var binding: FragmentDetailsBinding
 
-    //    private val detailsViewModel: DetailsViewModel by (context as FragmentActivity).viewModel()
     private val detailsViewModel: DetailsViewModel by activityViewModel()
     private val mapsViewModel: MapsViewModel by activityViewModel()
 

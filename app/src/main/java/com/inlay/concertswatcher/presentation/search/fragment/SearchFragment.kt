@@ -14,15 +14,14 @@ import com.google.gson.Gson
 import com.inlay.concertswatcher.R
 import com.inlay.concertswatcher.data.models.ConcertsDataNetworkModel
 import com.inlay.concertswatcher.databinding.FragmentSearchBinding
+import com.inlay.concertswatcher.di.getOrCreateSearchScope
 import com.inlay.concertswatcher.presentation.search.viewModel.SearchViewModel
-import org.koin.android.ext.android.getKoin
 import java.io.IOException
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
 
-    private val scope = getKoin().getScope("searchScope")
-    private val searchViewModel: SearchViewModel by scope.inject()
+    private val searchViewModel: SearchViewModel = getOrCreateSearchScope().get()
 
     private var modelMinDate: String? = ""
     private var modelMaxDate: String? = ""
