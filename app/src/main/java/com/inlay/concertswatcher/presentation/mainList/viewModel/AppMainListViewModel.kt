@@ -4,15 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.inlay.concertswatcher.data.models.ConcertItemNetworkModel
 import com.inlay.concertswatcher.data.models.ConcertsDataNetworkModel
+import com.inlay.concertswatcher.di.getOrCreateSearchScope
 import com.inlay.concertswatcher.presentation.mainList.asDetailsData
 import com.inlay.concertswatcher.presentation.search.viewModel.SearchViewModel
 import com.inlay.details.data.models.DetailsDataModel
-import org.koin.java.KoinJavaComponent.getKoin
 
 class AppMainListViewModel : MainListViewModel() {
 
-    private val scope = getKoin().getScope("searchScope")
-    private val searchViewModel: SearchViewModel by scope.inject()
+    private val searchViewModel: SearchViewModel = getOrCreateSearchScope().get()
 
     override val error: LiveData<String> = searchViewModel.searchError
 

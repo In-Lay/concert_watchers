@@ -27,4 +27,8 @@
         android:id="@+id/login"
         android:name="com.inlay.login.presentation.fragment.LoginFragment"
         android:label="Login" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.inlay.login.presentation.fragment.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

@@ -5,4 +5,8 @@
     <string name="etPassword">Password</string>
     <string name="etEmail">Email</string>
     <string name="warning">Wrong email or password. \nTry again</string>
+    <string name="button_logout">Logout</string>
+    <string name="dialog_title">Auth error</string>
+    <string name="dissmiss">Dissmiss</string>
+    <string name="profile_image">Profile image</string>
 </resources>
