@@ -1,26 +1,25 @@
 package com.inlay.concertswatcher.presentation.mainList.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.inlay.concertswatcher.data.models.ConcertItemNetworkModel
 import com.inlay.concertswatcher.data.models.ConcertsDataNetworkModel
-import com.inlay.concertswatcher.domain.mainList.repoes.FlowingConcertsDataRepository
 import com.inlay.concertswatcher.presentation.mainList.asDetailsData
 import com.inlay.concertswatcher.presentation.search.viewModel.SearchViewModel
 import com.inlay.details.data.models.DetailsDataModel
+import org.koin.java.KoinJavaComponent.getKoin
 
-class AppMainListViewModel(
-    searchViewModel: SearchViewModel,
-    private val dataRepository: FlowingConcertsDataRepository
-) : MainListViewModel() {
+class AppMainListViewModel : MainListViewModel() {
+
+    private val scope = getKoin().getScope("searchScope")
+    private val searchViewModel: SearchViewModel by scope.inject()
 
     override val error: LiveData<String> = searchViewModel.searchError
 
     override val isLoading: LiveData<Boolean> = searchViewModel.searchIsLoading
 
-    private var _concertsData = MutableLiveData<ConcertsDataNetworkModel>()
-    override val concertsData: LiveData<ConcertsDataNetworkModel> = _concertsData
+    override val concertsData: LiveData<ConcertsDataNetworkModel> =
+        searchViewModel.searchConcertsData
 
 
     private val _itemNetworkModelMutableLiveData = MutableLiveData<DetailsDataModel?>()
@@ -30,52 +29,18 @@ class AppMainListViewModel(
 
     init {
 //        searchViewModel.sendSearchUiModel(SearchUiModel("artist", "Ed Sheeran", null, null))
-        Log.d("DetailsFlag", "MainListVM init; concertsData: ${concertsData.value}")
-        Log.d(
-            "DetailsFlag",
-            "MainListVM init; searchConcertsData: ${searchViewModel.searchConcertsData.value}"
-        )
     }
 
     override fun addTempConcerts(concertsDataNetworkModel: ConcertsDataNetworkModel) {
-//        Log.d(
-//            "DetailsFlag",
-//            "MainListVM addTempConcerts; concertsData from searchVM BEFORE: ${searchViewModel.searchConcertsData.value}"
-//        )
-        Log.d(
-            "DetailsFlag",
-            "MainListVM addTempConcerts; concertsDataNetworkModel: $concertsDataNetworkModel"
-        )
-        Log.d(
-            "DetailsFlag",
-            "MainListVM addTempConcerts; concertsData BEFORE: ${concertsData.value}"
-        )
-//        searchViewModel.addTempConcerts(concertsDataNetworkModel)
-        dataRepository.addTempConcerts(concertsDataNetworkModel)
-//        Log.d(
-//            "DetailsFlag",
-//            "MainListVM addTempConcerts; concertsData from searchVM AFTER: ${searchViewModel.searchConcertsData.value}"
-//        )
-        Log.d(
-            "DetailsFlag",
-            "MainListVM addTempConcerts; concertsData AFTER: ${concertsData.value}"
-        )
+
+        searchViewModel.addTempConcerts(concertsDataNetworkModel)
     }
 
     override fun goToDetails(itemData: ConcertItemNetworkModel?) {
         _itemNetworkModelMutableLiveData.value = itemData?.asDetailsData()
     }
 
-    override fun initConcertsData() {
-        _concertsData.value = dataRepository.concertsDataNetwork.value
-//        Log.d(
-//            "DetailsFlag",
-//            "MainListVM initConcertsData; concertsData from searchVM BEFORE: ${searchViewModel.searchConcertsData.value}"
-//        )
-//        _concertsData = searchViewModel.searchConcertsData
-//        Log.d(
-//            "DetailsFlag",
-//            "MainListVM initConcertsData; concertsData from searchVM AFTER: ${searchViewModel.searchConcertsData.value}"
-//        )
+    override fun setItemDataToNull() {
+        _itemNetworkModelMutableLiveData.value = null
     }
 }
