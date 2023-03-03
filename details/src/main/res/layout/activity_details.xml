@@ -48,7 +48,7 @@
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:title="@{detailsViewModel.textName}">
-                    
+
                     <ImageView
                         android:id="@+id/fav_icon"
                         android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                         android:onClick="@{()->detailsViewModel.onFavPressed()}"
                         android:padding="12dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/favorite_24px" />
+                        app:iconImage="@{detailsViewModel.iconImage}" />
                 </androidx.appcompat.widget.Toolbar>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>

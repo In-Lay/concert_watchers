@@ -10,9 +10,7 @@
             name="viewModel"
             type="com.inlay.details.presentation.viewModel.DetailsViewModel" />
     </data>
-
-    <!--TODO Custom layout behavior-->
-
+    
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

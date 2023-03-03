@@ -1,6 +1,7 @@
 package com.inlay.concertswatcher.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -9,15 +10,23 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.inlay.concertswatcher.R
 import com.inlay.concertswatcher.databinding.ActivityMainBinding
-import org.koin.android.ext.android.getKoin
+import com.inlay.login.di.getOrCreateLoginScope
+import com.inlay.login.di.getOrCreateProfileScope
+import com.inlay.login.presentation.viewModel.LoginViewModel
+import com.inlay.login.presentation.viewModel.profile.ProfileViewModel
 import org.koin.androidx.scope.ScopeActivity
 
 class MainActivity : ScopeActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    override val scope = getKoin().createScope<MainActivity>("searchScope")
+
+    private val loginViewModel: LoginViewModel = getOrCreateLoginScope().get()
+    private val profileViewModel: ProfileViewModel = getOrCreateProfileScope().get()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -44,32 +53,62 @@ class MainActivity : ScopeActivity() {
             }
         })
 
-        handleUIComponents()
+        val currentUser = Firebase.auth.currentUser
+
+        if (currentUser != null) {
+            handleUIComponents(true)
+        } else handleUIComponents()
+
+        loginViewModel.userStateFlag.observe(this) {
+            Log.d("LoginTag", "userStateFlag: $it")
+            handleUIComponents(it)
+            navController.navigate(R.id.profile)
+        }
+
+        profileViewModel.userProfileStateFlag.observe(this) {
+            Log.d("LoginTag", "userProfileStateTag: $it")
+            handleUIComponents(it)
+            navController.navigate(R.id.login)
+        }
     }
 
-    private fun handleUIComponents() {
+    private fun handleUIComponents(isUserLogged: Boolean = false) {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         bottomNavigationView.setupWithNavController(navController)
         bottomNavigationView.setOnItemSelectedListener {
+
+            Log.d("LoginTag", "item id: ${it.title}")
             when (it.itemId) {
                 R.id.main -> {
-                    navController.popBackStack(R.id.main, false)
-                    navController.navigate(R.id.main)
-                    supportActionBar?.title = "Home"
-                    binding.topAppBar.menu.findItem(R.id.search).isVisible = true
+                    if (!it.isChecked) {
+                        navController.popBackStack(R.id.main, false)
+                        navController.navigate(R.id.main)
+                        supportActionBar?.title = "Home"
+                        binding.topAppBar.menu.findItem(R.id.search).isVisible = true
+                    }
                 }
                 R.id.favourites -> {
-                    navController.popBackStack(R.id.favourites, true)
-                    navController.navigate(R.id.favourites)
-                    supportActionBar?.title = "Favourite"
-                    binding.topAppBar.menu.findItem(R.id.search).isVisible = false
+                    if (!it.isChecked) {
+                        navController.popBackStack(R.id.favourites, true)
+                        navController.navigate(R.id.favourites)
+                        supportActionBar?.title = "Favourite"
+                        binding.topAppBar.menu.findItem(R.id.search).isVisible = false
+                    }
                 }
                 R.id.login -> {
-                    navController.popBackStack(R.id.login, true)
-                    navController.navigate(R.id.login)
-                    supportActionBar?.title = "Profile"
-                    binding.topAppBar.menu.findItem(R.id.search).isVisible = false
+                    if (!it.isChecked) {
+                        if (isUserLogged) {
+                            navController.popBackStack(R.id.profile, true)
+                            navController.navigate(R.id.profile)
+                            supportActionBar?.title = "Profile"
+                        } else {
+                            navController.popBackStack(R.id.login, true)
+                            navController.navigate(R.id.login)
+                            supportActionBar?.title = "Login"
+                        }
+                        binding.topAppBar.menu.findItem(R.id.search).isVisible = false
+                    }
                 }
             }
             true

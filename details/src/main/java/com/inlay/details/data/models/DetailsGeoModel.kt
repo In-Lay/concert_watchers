@@ -5,5 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DetailsGeoModel(
-    val type: String?, val latitude: Double, val longitude: Double
+    val type: String? = "",
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 ) : Parcelable
