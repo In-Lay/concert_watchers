@@ -1,6 +1,6 @@
 package com.inlay.details.presentation.viewModel
 
-import android.util.Log
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
@@ -16,7 +16,6 @@ import com.inlay.details.data.utils.shortDateParser
 class AppDetailsViewModel : DetailsViewModel() {
     private val _concertsDetails = MutableLiveData<DetailsDataModel?>()
     override val concertsDetails: LiveData<DetailsDataModel?> = _concertsDetails
-
 
     private val _favButtonFlag = MutableLiveData<Boolean>()
     override val favButtonFlag: LiveData<Boolean> = _favButtonFlag
@@ -35,6 +34,13 @@ class AppDetailsViewModel : DetailsViewModel() {
 
     private var _imageUrl = MutableLiveData<String>()
     override val imageUrl = _imageUrl
+
+    private val _iconImage = MutableLiveData<Drawable>()
+    override val iconImage: LiveData<Drawable> = _iconImage
+
+    override fun setIconImage(icon: Drawable) {
+        _iconImage.value = icon
+    }
 
     override fun assignDetailsData(detailsDetailsDataModel: DetailsDataModel?) {
         _concertsDetails.value = detailsDetailsDataModel
@@ -58,15 +64,21 @@ class AppDetailsViewModel : DetailsViewModel() {
     }
 
     override fun onFavPressed() {
-        _favButtonFlag.value = true
-        Log.d("DetailsFlag", "Fav pressed")
+        _favButtonFlag.value = _favButtonFlag.value == false || _favButtonFlag.value == null
     }
+
 
     companion object {
         @JvmStatic
         @BindingAdapter("imageSource")
         fun loadImage(view: ImageView, image: String) {
             view.load(image)
+        }
+
+        @JvmStatic
+        @BindingAdapter("iconImage")
+        fun loadIconImage(view: ImageView, icon: Drawable) {
+            view.load(icon)
         }
     }
 }

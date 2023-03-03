@@ -1,7 +1,6 @@
 package com.inlay.login.presentation.viewModel.profile
 
 import android.net.Uri
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
@@ -63,9 +62,6 @@ class AppProfileViewModel : ProfileViewModel() {
         @JvmStatic
         @BindingAdapter("imageSource")
         fun loadImage(view: ImageView, image: Uri?) {
-            Log.d(
-                "LoginTag", "imageLoaded with: $image"
-            )
             if (image == null) {
                 view.load(
                     "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-150x150.jpg"
@@ -74,9 +70,6 @@ class AppProfileViewModel : ProfileViewModel() {
                     transformations(CircleCropTransformation())
                 }
             } else {
-                Log.d(
-                    "LoginTag", "image != null"
-                )
                 view.load(image) {
                     crossfade(true)
                     transformations(CircleCropTransformation())

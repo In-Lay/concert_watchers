@@ -2,6 +2,8 @@ package com.inlay.concertswatcher.di
 
 import android.app.Activity
 import android.content.Context
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.inlay.concertswatcher.data.RetrofitObj
 import com.inlay.concertswatcher.data.api.AppConcertsApiService
 import com.inlay.concertswatcher.data.api.ConcertsApi
@@ -9,9 +11,7 @@ import com.inlay.concertswatcher.data.repoes.ConcertsRepoImpl
 import com.inlay.concertswatcher.domain.mainList.GetConcerts
 import com.inlay.concertswatcher.domain.mainList.GetConcertsImpl
 import com.inlay.concertswatcher.domain.mainList.api.ConcertsApiService
-import com.inlay.concertswatcher.domain.mainList.repoes.AppFlowingConcertsDataRepository
 import com.inlay.concertswatcher.domain.mainList.repoes.ConcertsRepository
-import com.inlay.concertswatcher.domain.mainList.repoes.FlowingConcertsDataRepository
 import com.inlay.concertswatcher.presentation.AppNavigator
 import com.inlay.concertswatcher.presentation.Navigator
 import com.inlay.concertswatcher.presentation.ext.getFragmentActivity
@@ -42,7 +42,7 @@ val mainModule = module {
 
     factory<Navigator> { (activity: Activity) -> AppNavigator(activity) }
 
-    single<FlowingConcertsDataRepository> { AppFlowingConcertsDataRepository() }
+    single { Firebase.database("https://concerts-watcher-default-rtdb.europe-west1.firebasedatabase.app") }
 
     viewModel<MainListViewModel> { AppMainListViewModel() }
 

@@ -1,4 +1,4 @@
-package com.inlay.concertswatcher.presentation.mainList
+package com.inlay.concertswatcher.presentation.ext
 
 import com.inlay.concertswatcher.data.models.ConcertAddressNetworkModel
 import com.inlay.concertswatcher.data.models.ConcertGeoNetworkModel

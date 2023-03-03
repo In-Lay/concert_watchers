@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.inlay.concertswatcher.data.models.ConcertItemNetworkModel
 import com.inlay.concertswatcher.data.models.ConcertsDataNetworkModel
 import com.inlay.concertswatcher.di.getOrCreateSearchScope
-import com.inlay.concertswatcher.presentation.mainList.asDetailsData
+import com.inlay.concertswatcher.presentation.ext.asDetailsData
 import com.inlay.concertswatcher.presentation.search.viewModel.SearchViewModel
 import com.inlay.details.data.models.DetailsDataModel
 

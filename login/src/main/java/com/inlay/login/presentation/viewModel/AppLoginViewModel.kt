@@ -1,12 +1,13 @@
 package com.inlay.login.presentation.viewModel
 
 import android.text.Editable
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class AppLoginViewModel : LoginViewModel() {
     private val _email = MutableLiveData<String>()
@@ -48,24 +49,16 @@ class AppLoginViewModel : LoginViewModel() {
 
     override fun onLoginClicked() {
         if (_email.value?.let { isEmailValid(it) } == true && _password.value != null) {
-            Log.d("LoginTag", "Login Email validated")
-            Log.d(
-                "LoginTag",
-                "AppLoginViewModel onLoginClicked \nemail: ${_email.value} \npassword: ${_password.value}"
-            )
             _warningText.value = ""
 
             _auth.value?.signInWithEmailAndPassword(_email.value!!, _password.value!!)
                 ?.addOnCompleteListener {
-                    Log.w("LoginTag", "addOnCompleteListener: $it")
                     if (it.isSuccessful) {
-                        Log.w("LoginTag", "login isSuccessful")
                         _currentUser.value = _auth.value!!.currentUser
                         _userStateFlag.value = true
                     }
                 }?.addOnFailureListener {
                     _error.value = it.message
-                    Log.w("LoginTag", "addOnFailureListener: $it")
                 }
         } else {
             _warningText.value = "Incorrect Email or Password"
@@ -74,16 +67,14 @@ class AppLoginViewModel : LoginViewModel() {
 
     override fun onRegisterClicked() {
         if (_email.value?.let { isEmailValid(it) } == true && _password.value != null) {
-            Log.d("LoginTag", "Register Email validated")
-            Log.d(
-                "LoginTag",
-                "AppLoginViewModel onRegisterClicked \nemail: ${_email.value} \npassword: ${_password.value}"
-            )
+
             _warningText.value = ""
             _auth.value?.createUserWithEmailAndPassword(_email.value!!, _password.value!!)
                 ?.addOnCompleteListener {
-
-                    if (it.isSuccessful) _currentUser.value = _auth.value!!.currentUser
+                    if (it.isSuccessful) {
+                        _currentUser.value = _auth.value!!.currentUser
+                        Firebase.database.reference.child(_currentUser.value?.uid!!)
+                    }
                 }?.addOnFailureListener {
                     _error.value = it.message
                 }

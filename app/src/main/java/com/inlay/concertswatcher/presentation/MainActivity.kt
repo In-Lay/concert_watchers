@@ -1,7 +1,6 @@
 package com.inlay.concertswatcher.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -60,13 +59,11 @@ class MainActivity : ScopeActivity() {
         } else handleUIComponents()
 
         loginViewModel.userStateFlag.observe(this) {
-            Log.d("LoginTag", "userStateFlag: $it")
             handleUIComponents(it)
             navController.navigate(R.id.profile)
         }
 
         profileViewModel.userProfileStateFlag.observe(this) {
-            Log.d("LoginTag", "userProfileStateTag: $it")
             handleUIComponents(it)
             navController.navigate(R.id.login)
         }
@@ -78,7 +75,6 @@ class MainActivity : ScopeActivity() {
         bottomNavigationView.setupWithNavController(navController)
         bottomNavigationView.setOnItemSelectedListener {
 
-            Log.d("LoginTag", "item id: ${it.title}")
             when (it.itemId) {
                 R.id.main -> {
                     if (!it.isChecked) {

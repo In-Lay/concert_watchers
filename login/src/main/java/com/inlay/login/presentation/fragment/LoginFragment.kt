@@ -1,7 +1,6 @@
 package com.inlay.login.presentation.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +45,6 @@ class LoginFragment : Fragment() {
             dialog.dismiss()
         }
         loginViewModel.error.observe(viewLifecycleOwner) {
-            Log.d("LoginTag", "error block: $it")
             if (it != null) {
                 builder?.setMessage(it)
                 builder?.create()?.show()

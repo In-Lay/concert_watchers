@@ -51,7 +51,6 @@ class MainListFragment : Fragment() {
             if (it.isNotEmpty()) Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
 
-        //TODO if true always opens Details
         viewModel.itemNetworkModelMutableLiveData.observe(viewLifecycleOwner) { itemModel ->
             itemModel?.let {
                 navigator.goToDetails(it)

@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import com.inlay.concertswatcher.R
 import com.inlay.concertswatcher.databinding.FragmentDatePickerBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,8 +53,7 @@ class DatePickerFragment(private val onDatePicked: (String?, String?) -> Unit) :
                 startDate = simpleDateFormat.format(calendar.time)
             }
             binding.vDatePicker.minDate = tempMinDate
-            //TODO Check
-            binding.buttonOk.text = "OK"
+            binding.buttonOk.text = context?.getString(R.string.button_text_ok)
         } else if (endDate == null) {
             binding.vDatePicker.let {
                 calendar.set(it.year, it.month, it.dayOfMonth)

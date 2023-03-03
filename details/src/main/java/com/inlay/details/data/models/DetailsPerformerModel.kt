@@ -5,5 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DetailsPerformerModel(
-    val type: String?, val name: String
+    val type: String? = "",
+    val name: String = ""
 ) : Parcelable
