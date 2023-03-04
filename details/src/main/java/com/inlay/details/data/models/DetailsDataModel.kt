@@ -1,6 +1,7 @@
 package com.inlay.details.data.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -11,9 +12,9 @@ data class DetailsDataModel(
     val endDate: String = "",
     val eventStatus: String = "",
     val image: String = "",
-    val detailsLocationModel: DetailsLocationModel = DetailsLocationModel(),
+    @SerializedName("location") val detailsLocationModel: DetailsLocationModel = DetailsLocationModel(),
     val name: String = "",
-    val detailsPerformerModel: List<DetailsPerformerModel> = listOf(),
+    @SerializedName("performer") val detailsPerformerModel: List<DetailsPerformerModel> = listOf(),
     val startDate: String = ""
 ) : Parcelable
 

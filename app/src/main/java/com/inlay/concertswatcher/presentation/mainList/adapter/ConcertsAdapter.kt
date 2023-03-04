@@ -9,9 +9,11 @@ import com.inlay.concertswatcher.presentation.mainList.viewModel.item.ItemViewMo
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 
 class ConcertsAdapter(
-    private val concertItemNetworkModelList: List<ConcertItemNetworkModel>?
+    private val concertItemNetworkModelList: List<ConcertItemNetworkModel>?,
+    private val fragmentType: String
 ) : RecyclerView.Adapter<ConcertsDataViewHolder>(), KoinComponent {
 
 
@@ -23,10 +25,21 @@ class ConcertsAdapter(
     }
 
     override fun onBindViewHolder(holder: ConcertsDataViewHolder, position: Int) {
-        val itemViewModel: ItemViewModel by inject { parametersOf(holder.itemView.context) }
-        val concert = concertItemNetworkModelList?.get(position)
-        itemViewModel.initItemData(concert)
-        holder.bind(itemViewModel)
+        if (fragmentType == "main") {
+            val itemViewModel: ItemViewModel by inject(named("MainListItem")) { parametersOf(holder.itemView.context) }
+            val concert = concertItemNetworkModelList?.get(position)
+            itemViewModel.initItemData(concert)
+            holder.bind(itemViewModel)
+        } else {
+            val itemViewModel: ItemViewModel by inject(named("FavouriteListItem")) {
+                parametersOf(
+                    holder.itemView.context
+                )
+            }
+            val concert = concertItemNetworkModelList?.get(position)
+            itemViewModel.initItemData(concert)
+            holder.bind(itemViewModel)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -15,6 +15,9 @@ import com.inlay.concertswatcher.domain.mainList.repoes.ConcertsRepository
 import com.inlay.concertswatcher.presentation.AppNavigator
 import com.inlay.concertswatcher.presentation.Navigator
 import com.inlay.concertswatcher.presentation.ext.getFragmentActivity
+import com.inlay.concertswatcher.presentation.favouriteList.viewModel.AppFavouriteListViewModel
+import com.inlay.concertswatcher.presentation.favouriteList.viewModel.FavouriteItemViewModel
+import com.inlay.concertswatcher.presentation.favouriteList.viewModel.FavouriteListViewModel
 import com.inlay.concertswatcher.presentation.mainList.viewModel.AppMainListViewModel
 import com.inlay.concertswatcher.presentation.mainList.viewModel.MainListViewModel
 import com.inlay.concertswatcher.presentation.mainList.viewModel.item.AppItemViewModel
@@ -46,14 +49,20 @@ val mainModule = module {
 
     viewModel<MainListViewModel> { AppMainListViewModel() }
 
-    viewModel<ItemViewModel> { (context: Context) ->
+    viewModel<ItemViewModel>(named("MainListItem")) { (context: Context) ->
         AppItemViewModel(context.getFragmentActivity().getViewModel())
     }
 }
 
-//val favouriteScreen = module {
-//
-//}
+val favouriteScreen = module {
+    viewModel<FavouriteListViewModel> { AppFavouriteListViewModel() }
+
+    viewModel<ItemViewModel>(named("FavouriteListItem")) { (context: Context) ->
+        FavouriteItemViewModel(
+            context.getFragmentActivity().getViewModel()
+        )
+    }
+}
 
 val searchScreen = module {
     scope(named(SEARCH_SCOPE_NAME)) { scoped<SearchViewModel> { AppSearchViewModel(getConcerts = get()) } }

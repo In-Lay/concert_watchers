@@ -1,7 +1,6 @@
 package com.inlay.map.presentation.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(p0: GoogleMap) {
         mMap = p0
-        Log.d("MapsTag", "Map is ready: $p0")
         var coordinates = LatLng(0.0, 0.0)
         mapsViewModel.mapsMapGeoModel.observe(viewLifecycleOwner) {
             coordinates = LatLng(it?.latitude!!, it.longitude)

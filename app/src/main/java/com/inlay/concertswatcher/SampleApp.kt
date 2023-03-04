@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.inlay.concertswatcher.di.favouriteScreen
 import com.inlay.concertswatcher.di.mainModule
 import com.inlay.concertswatcher.di.searchScreen
 import com.inlay.details.di.detailsModule
@@ -21,7 +22,14 @@ class SampleApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@SampleApp)
-            modules(mainModule, detailsModule, mapsModule, searchScreen, loginModule)
+            modules(
+                mainModule,
+                detailsModule,
+                mapsModule,
+                favouriteScreen,
+                searchScreen,
+                loginModule
+            )
         }
     }
 }

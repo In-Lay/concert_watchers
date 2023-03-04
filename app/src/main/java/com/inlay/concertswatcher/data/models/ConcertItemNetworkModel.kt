@@ -6,16 +6,14 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ConcertItemNetworkModel(
-    val context: String?,
-    val type: String?,
-    val description: String,
-    val endDate: String,
-    val eventStatus: String,
-    val image: String,
-    @SerializedName("location")
-    val concertLocationNetworkModel: ConcertLocationNetworkModel,
-    val name: String,
-    @SerializedName("performer")
-    val concertPerformerNetworkModel: List<ConcertPerformerNetworkModel>,
-    val startDate: String
+    val context: String? = "",
+    val type: String? = "",
+    val description: String = "",
+    val endDate: String = "",
+    val eventStatus: String = "",
+    val image: String = "",
+    @SerializedName("location") val concertLocationNetworkModel: ConcertLocationNetworkModel = ConcertLocationNetworkModel(),
+    val name: String = "",
+    @SerializedName("performer") val concertPerformerNetworkModel: List<ConcertPerformerNetworkModel> = listOf(),
+    val startDate: String = ""
 ) : Parcelable

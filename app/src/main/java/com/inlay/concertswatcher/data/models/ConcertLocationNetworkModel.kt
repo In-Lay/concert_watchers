@@ -6,10 +6,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ConcertLocationNetworkModel(
-    val type: String?,
+    val type: String? = "",
     @SerializedName("address")
-    val concertAddressNetworkModel: ConcertAddressNetworkModel,
+    val concertAddressNetworkModel: ConcertAddressNetworkModel = ConcertAddressNetworkModel(),
     @SerializedName("geo")
-    val concertGeoNetworkModel: ConcertGeoNetworkModel,
-    val name: String
+    val concertGeoNetworkModel: ConcertGeoNetworkModel = ConcertGeoNetworkModel(),
+    val name: String = ""
 ) : Parcelable
