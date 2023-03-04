@@ -64,7 +64,7 @@ class MainListFragment : Fragment() {
     private fun subscribeToData() {
         viewModel.concertsData.observe(viewLifecycleOwner) {
             val concerts = it.concertItemsNetworkModel
-            val concertsAdapter = ConcertsAdapter(concerts)
+            val concertsAdapter = ConcertsAdapter(concerts, "main")
 
             recyclerView.adapter = concertsAdapter
             recyclerView.layoutManager = LinearLayoutManager(context)

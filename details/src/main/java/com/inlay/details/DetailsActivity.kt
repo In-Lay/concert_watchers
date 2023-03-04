@@ -29,7 +29,9 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         databaseReference = database.reference
+
         detailsViewModel.setIconImage(
             AppCompatResources.getDrawable(
                 applicationContext, R.drawable.outline_favorite_border_24
@@ -54,30 +56,29 @@ class DetailsActivity : AppCompatActivity() {
         } else {
             val currentUserId = Firebase.auth.currentUser?.uid
 
-            valueListener =
-                databaseReference.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
+            valueListener = databaseReference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-                        val findConcert =
-                            snapshot.child("concerts").child(currentUserId!!).children.find {
-                                val itemDetails = it.getValue(DetailsDataModel::class.java)
-                                dataModelItem?.startDate == itemDetails?.startDate && dataModelItem?.detailsLocationModel?.detailsGeoModel?.latitude == itemDetails?.detailsLocationModel?.detailsGeoModel?.latitude && dataModelItem?.detailsLocationModel?.detailsGeoModel?.longitude == itemDetails?.detailsLocationModel?.detailsGeoModel?.longitude
-                            }
-
-                        if (findConcert != null) {
-                            itemKey = findConcert.key!!
-
-                            detailsViewModel.setIconImage(
-                                AppCompatResources.getDrawable(
-                                    applicationContext, R.drawable.outline_favorite_24
-                                )!!
-                            )
+                    val findConcert =
+                        snapshot.child("concerts").child(currentUserId!!).children.find {
+                            val itemDetails = it.getValue(DetailsDataModel::class.java)
+                            dataModelItem?.startDate == itemDetails?.startDate && dataModelItem?.detailsLocationModel?.detailsGeoModel?.latitude == itemDetails?.detailsLocationModel?.detailsGeoModel?.latitude && dataModelItem?.detailsLocationModel?.detailsGeoModel?.longitude == itemDetails?.detailsLocationModel?.detailsGeoModel?.longitude
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
+                    if (findConcert != null) {
+                        itemKey = findConcert.key!!
+
+                        detailsViewModel.setIconImage(
+                            AppCompatResources.getDrawable(
+                                applicationContext, R.drawable.outline_favorite_24
+                            )!!
+                        )
                     }
-                })
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
 
             detailsViewModel.favButtonFlag.observe(this) {
                 if (it && itemKey == "") {

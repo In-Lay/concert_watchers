@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ConcertPerformerNetworkModel(
-    val type: String?,
-    val name: String
+    val type: String? = "",
+    val name: String = ""
 ) : Parcelable

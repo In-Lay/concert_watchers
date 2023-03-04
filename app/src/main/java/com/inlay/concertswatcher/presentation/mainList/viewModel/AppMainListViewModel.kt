@@ -25,7 +25,6 @@ class AppMainListViewModel : MainListViewModel() {
     override val itemNetworkModelMutableLiveData: LiveData<DetailsDataModel?> =
         _itemNetworkModelMutableLiveData
 
-
     init {
 //        searchViewModel.sendSearchUiModel(SearchUiModel("artist", "Ed Sheeran", null, null))
     }

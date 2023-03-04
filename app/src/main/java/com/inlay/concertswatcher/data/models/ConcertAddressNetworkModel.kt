@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ConcertAddressNetworkModel(
-    val type: String?,
-    val addressCountry: String,
-    val addressLocality: String,
-    val postalCode: String,
-    val streetAddress: String
+    val type: String? = "",
+    val addressCountry: String = "",
+    val addressLocality: String = "",
+    val postalCode: String = "",
+    val streetAddress: String = ""
 ) : Parcelable
