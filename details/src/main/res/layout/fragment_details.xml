@@ -10,7 +10,7 @@
             name="viewModel"
             type="com.inlay.details.presentation.viewModel.DetailsViewModel" />
     </data>
-    
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,16 +72,26 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_details_combo_date_title"
                 tools:text="@string/combo_date" />
 
-            <View
+
+            <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/line_first"
                 android:layout_width="320dp"
                 android:layout_height="2dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_details_combo_date" />
+            <!--            <View-->
+            <!--                android:id="@+id/line_first"-->
+            <!--                android:layout_width="320dp"-->
+            <!--                android:layout_height="2dp"-->
+            <!--                android:layout_marginStart="16dp"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:background="@color/black"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/tv_details_combo_date" />-->
 
             <TextView
                 android:id="@+id/tv_address"
@@ -107,13 +117,12 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_address"
                 tools:text="@string/details_address" />
 
-            <View
+            <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/line_second"
                 android:layout_width="320dp"
                 android:layout_height="2dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_details_address" />
@@ -144,13 +153,12 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_description"
                 tools:text="@string/details_additional_details" />
 
-            <View
+            <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/line_third"
                 android:layout_width="320dp"
                 android:layout_height="2dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_details_description" />

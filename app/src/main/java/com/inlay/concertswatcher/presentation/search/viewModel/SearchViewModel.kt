@@ -17,6 +17,7 @@ abstract class SearchViewModel : ViewModel() {
     abstract fun sendSearchUiModel(uiModel: SearchUiModel)
 
     abstract fun addTempConcerts(concertsDataNetworkModel: ConcertsDataNetworkModel)
+    abstract fun changeOnDatePickerClickedFlagToFalse()
 
     abstract fun openDateDialog()
 

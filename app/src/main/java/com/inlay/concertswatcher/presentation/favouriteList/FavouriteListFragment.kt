@@ -29,10 +29,11 @@ class FavouriteListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val favouritesViewModel: FavouriteListViewModel by activityViewModel()
     private val database: FirebaseDatabase by inject()
-    private lateinit var valueListener: ValueEventListener
+    private var valueListener: ValueEventListener? = null
     private lateinit var databaseReference: DatabaseReference
     private val favouriteList = mutableListOf<ConcertItemNetworkModel>()
     private val navigator: Navigator by inject { parametersOf(activity) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -78,7 +79,9 @@ class FavouriteListFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        databaseReference.removeEventListener(valueListener)
+        if (valueListener != null) {
+            databaseReference.removeEventListener(valueListener!!)
+        }
         super.onDestroy()
     }
 

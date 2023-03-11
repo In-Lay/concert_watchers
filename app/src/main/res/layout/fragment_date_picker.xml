@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="@id/v_date_picker"
             app:layout_constraintTop_toBottomOf="@+id/v_date_picker" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

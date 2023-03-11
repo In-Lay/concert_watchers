@@ -11,9 +11,11 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        app:cardCornerRadius="16dp"
         app:cardElevation="0dp"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
@@ -23,7 +25,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/card_image"
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
@@ -42,14 +44,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.textName}"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                     tools:text="@string/card_name" />
 
                 <TextView
                     android:id="@+id/card_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="@{viewModel.textLocation}"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
@@ -59,22 +61,25 @@
                     android:id="@+id/card_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@{viewModel.textDate}"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="@string/card_combo_date" />
 
-                <TextView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/card_details"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_gravity="end"
                     android:onClick="@{() -> viewModel.goToDetails()}"
                     android:text="@string/card_details"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="20sp" />
+                    android:textSize="17sp"
+                    app:cornerRadius="16dp"
+                    app:shapeAppearance="?attr/shapeAppearanceMediumComponent" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

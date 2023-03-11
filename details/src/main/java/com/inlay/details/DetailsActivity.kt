@@ -22,7 +22,7 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
     private val detailsViewModel: DetailsViewModel by viewModel()
     private val database: FirebaseDatabase by inject()
-    private lateinit var valueListener: ValueEventListener
+    private var valueListener: ValueEventListener? = null
     private lateinit var databaseReference: DatabaseReference
     private var itemKey: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,7 +129,9 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        databaseReference.removeEventListener(valueListener)
+        if (valueListener != null) {
+            databaseReference.removeEventListener(valueListener!!)
+        }
         super.onDestroy()
     }
 
