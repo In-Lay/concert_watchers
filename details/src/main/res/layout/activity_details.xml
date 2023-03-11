@@ -20,33 +20,35 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="256dp"
-            android:fitsSystemWindows="true"
-            android:theme="@style/Theme.ConcertsWatcher.AppBarOverlay">
+            android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleGravity="top"
                 app:expandedTitleMarginEnd="64dp"
                 app:expandedTitleMarginStart="48dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:title="@{detailsViewModel.textName}"
+                app:titleCollapseMode="scale">
                 <!--                app:contentScrim="?attr/colorPrimary"-->
                 <ImageView
                     android:id="@+id/backdrop"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="256dp"
                     android:contentDescription="@string/details_image"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     app:imageSource="@{detailsViewModel.imageUrl}"
                     app:layout_collapseMode="parallax" />
 
-                <androidx.appcompat.widget.Toolbar
+                <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:title="@{detailsViewModel.textName}">
 
                     <ImageView
@@ -59,7 +61,7 @@
                         android:padding="12dp"
                         android:scaleType="fitXY"
                         app:iconImage="@{detailsViewModel.iconImage}" />
-                </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.MaterialToolbar>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>

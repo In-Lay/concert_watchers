@@ -23,8 +23,8 @@ class AppSearchViewModel(
     private val _searchIsLoading = MutableLiveData<Boolean>()
     override val searchIsLoading: LiveData<Boolean> = _searchIsLoading
 
-    private val _onDateClickedFlag = MutableLiveData<Boolean>()
-    override val onDatePickerClickedFlag: LiveData<Boolean> = _onDateClickedFlag
+    private val _onDatePickerClickedFlag = MutableLiveData<Boolean>()
+    override val onDatePickerClickedFlag: LiveData<Boolean> = _onDatePickerClickedFlag
 
     private val _onDatePickerClosedFlag = MutableLiveData<Boolean>()
     override val onDatePickerClosedFlag: LiveData<Boolean> = _onDatePickerClosedFlag
@@ -70,8 +70,12 @@ class AppSearchViewModel(
         )
     }
 
+    override fun changeOnDatePickerClickedFlagToFalse() {
+        _onDatePickerClickedFlag.value = false
+    }
+
     override fun openDateDialog() {
-        _onDateClickedFlag.postValue(true)
+        _onDatePickerClickedFlag.postValue(true)
     }
 
     override fun onDialogClosed() {

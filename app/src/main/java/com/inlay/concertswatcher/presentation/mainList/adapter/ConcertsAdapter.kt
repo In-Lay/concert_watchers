@@ -15,8 +15,6 @@ class ConcertsAdapter(
     private val concertItemNetworkModelList: List<ConcertItemNetworkModel>?,
     private val fragmentType: String
 ) : RecyclerView.Adapter<ConcertsDataViewHolder>(), KoinComponent {
-
-
     private lateinit var binding: ConcertItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConcertsDataViewHolder {

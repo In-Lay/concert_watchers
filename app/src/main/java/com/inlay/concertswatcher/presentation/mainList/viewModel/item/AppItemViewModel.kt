@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.inlay.concertswatcher.data.models.ConcertItemNetworkModel
 import com.inlay.concertswatcher.presentation.mainList.viewModel.MainListViewModel
 import com.inlay.concertswatcher.utils.longDateFormatter
@@ -55,7 +56,9 @@ class AppItemViewModel(private val mainListViewModel: MainListViewModel) : ItemV
         @JvmStatic
         @BindingAdapter("imageSource")
         fun loadImage(view: ImageView, image: String) {
-            view.load(image)
+            view.load(image) {
+                transformations(RoundedCornersTransformation(50.0F))
+            }
         }
     }
 }

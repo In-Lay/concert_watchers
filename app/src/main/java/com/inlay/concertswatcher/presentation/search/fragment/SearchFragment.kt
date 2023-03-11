@@ -33,6 +33,8 @@ class SearchFragment : Fragment() {
         )
         binding.viewModel = searchViewModel
         binding.dateButton.visibility = GONE
+
+        searchViewModel.changeOnDatePickerClickedFlagToFalse()
         return binding.root
     }
 
@@ -58,7 +60,7 @@ class SearchFragment : Fragment() {
 
         searchViewModel.onDatePickerClickedFlag.observe(viewLifecycleOwner) {
             if (it == true) {
-                val datePickerFragment = DatePickerFragment(onDatePicked)
+                val datePickerFragment = DatePickerFragment.instance(onDatePicked)
                 datePickerFragment.show(parentFragmentManager, "date picker")
             }
         }

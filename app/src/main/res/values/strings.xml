@@ -17,5 +17,6 @@
     <string name="card_location_name">Location name</string>
     <string name="card_combo_date">start date - end date</string>
     <string name="card_image">Event image</string>
-    <string name="card_details">details</string>
+    <string name="card_details">Details</string>
+    <string name="content_description_search_icon">Search icon</string>
 </resources>

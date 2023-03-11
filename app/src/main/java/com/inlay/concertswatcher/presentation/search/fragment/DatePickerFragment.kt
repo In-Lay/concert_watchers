@@ -9,15 +9,31 @@ import com.inlay.concertswatcher.databinding.FragmentDatePickerBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DatePickerFragment(private val onDatePicked: (String?, String?) -> Unit) : DialogFragment(),
-    DialogOnClickFunctions {
+class DatePickerFragment : DialogFragment(), DialogOnClickFunctions {
     private lateinit var binding: FragmentDatePickerBinding
     private lateinit var dialog: Dialog
     private lateinit var calendar: Calendar
     private var startDate: String? = null
     private var endDate: String? = null
+    private lateinit var onDatePicked: (String?, String?) -> Unit
+
+    companion object {
+        //        fun instance(onDatePicked: (String?, String?) -> Unit) {
+//            val bundle = Bundle()
+//            bundle.putSerializable("onDatePicked", onDatePicked as java.io.Serializable)
+//            return DatePickerFragment().apply {
+//                arguments = bundle
+//            }
+        fun instance(onDatePicked: (String?, String?) -> Unit) = DatePickerFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable("onDatePicked", onDatePicked as java.io.Serializable)
+            }
+        }
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        onDatePicked = arguments?.getSerializable("onDatePicked") as (String?, String?) -> Unit
+
         binding = FragmentDatePickerBinding.inflate(layoutInflater)
         calendar = Calendar.getInstance()
         dialog = Dialog(requireContext())
