@@ -36,6 +36,16 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         }
         mMap.addMarker(MarkerOptions().position(coordinates).title("Your event"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates))
+        
+        mMap.setOnCameraMoveStartedListener { i ->
+            if (i == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
+                mapsViewModel.setMapsFocus(true)
+            }
+        }
+
+        mMap.setOnCameraMoveCanceledListener {
+            mapsViewModel.setMapsFocus(false)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

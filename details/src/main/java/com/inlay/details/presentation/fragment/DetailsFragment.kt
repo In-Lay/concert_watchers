@@ -10,7 +10,6 @@ import com.inlay.details.R
 import com.inlay.details.data.asMapsGeo
 import com.inlay.details.databinding.FragmentDetailsBinding
 import com.inlay.details.presentation.viewModel.DetailsViewModel
-import com.inlay.map.presentation.fragment.MapsFragment
 import com.inlay.map.presentation.viewModel.MapsViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -27,16 +26,21 @@ class DetailsFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_details, container, false
         )
-        parentFragmentManager.beginTransaction().add(R.id.maps_layout, MapsFragment()).commit()
+
+//        parentFragmentManager.beginTransaction().add(R.id.maps2, MapsFragment()).commit()
         binding.viewModel = detailsViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         detailsViewModel.concertsDetails.observe(viewLifecycleOwner) {
             mapsViewModel.addGeo(it?.detailsLocationModel?.detailsGeoModel?.asMapsGeo())
         }
+
+        mapsViewModel.onMapsFocused.observe(viewLifecycleOwner) {
+            if (it) binding.scrollView.setShouldStopInterceptingTouchEvent(true)
+        }
     }
 }
+
