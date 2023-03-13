@@ -11,7 +11,8 @@
             type="com.inlay.details.presentation.viewModel.DetailsViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <com.inlay.details.presentation.DetailsScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:behavior_overlapTop="24dp"
@@ -21,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,22 +30,23 @@
                 android:layout_marginTop="16dp"
                 android:text="@{viewModel.textName}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/details_name" />
 
-            <TextView
-                android:id="@+id/tv_event_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/details_event_status" />
+            <!--            <com.google.android.material.textview.MaterialTextView-->
+            <!--                android:id="@+id/tv_event_status"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:layout_marginEnd="16dp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                tools:text="@string/details_event_status" />-->
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_details_combo_date_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,11 +56,10 @@
                 android:text="@string/details_combo_date"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="@color/color_secondary"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_details_combo_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,8 +67,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="@{viewModel.textDate}"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_details_combo_date_title"
                 tools:text="@string/combo_date" />
@@ -75,25 +74,17 @@
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/line_first"
-                android:layout_width="320dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:dividerInsetEnd="16dp"
+                app:dividerInsetStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_details_combo_date" />
-            <!--            <View-->
-            <!--                android:id="@+id/line_first"-->
-            <!--                android:layout_width="320dp"-->
-            <!--                android:layout_height="2dp"-->
-            <!--                android:layout_marginStart="16dp"-->
-            <!--                android:layout_marginTop="16dp"-->
-            <!--                android:background="@color/black"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/tv_details_combo_date" />-->
 
-            <TextView
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,29 +96,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/line_first" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_details_address"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:text="@{viewModel.textLocation}"
-                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_address"
                 tools:text="@string/details_address" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/line_second"
-                android:layout_width="320dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:dividerInsetEnd="16dp"
+                app:dividerInsetStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_details_address" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -139,15 +132,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/line_second" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_details_description"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="@{viewModel.textDescription}"
-                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_description"
@@ -155,15 +147,16 @@
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/line_third"
-                android:layout_width="320dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:dividerInsetEnd="16dp"
+                app:dividerInsetStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_details_description" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_maps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -175,20 +168,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/line_third" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/maps_layout"
-                android:name="com.inlay.map.presentation.fragment.MapsFragment"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/maps_card"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_maps"
-                tools:layout="@layout/fragment_maps" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_maps">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/maps_layout"
+                    android:name="com.inlay.map.presentation.fragment.MapsFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_maps"
+                    tools:layout="@layout/fragment_maps" />
+            </com.google.android.material.card.MaterialCardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+    </com.inlay.details.presentation.DetailsScrollView>
 </layout>

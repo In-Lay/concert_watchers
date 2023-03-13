@@ -16,28 +16,34 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
+        app:cardElevation="10dp"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/card_image"
-                android:layout_width="match_parent"
-                android:layout_height="194dp"
+                android:layout_width="164dp"
+                android:layout_height="0dp"
                 android:contentDescription="@string/card_image"
                 android:scaleType="centerCrop"
-                app:imageSource="@{viewModel.imageUrl}" />
+                app:imageSource="@{viewModel.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/card_image"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/card_name"
@@ -67,20 +73,35 @@
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="@string/card_combo_date" />
 
+
+                <!--                <com.google.android.material.divider.MaterialDivider-->
+                <!--                    android:id="@+id/divider"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="4dp"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/card_image" />-->
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/card_details"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="16dp"
                     android:onClick="@{() -> viewModel.goToDetails()}"
                     android:text="@string/card_details"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="17sp"
                     app:cornerRadius="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_date"
                     app:shapeAppearance="?attr/shapeAppearanceMediumComponent" />
             </LinearLayout>
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

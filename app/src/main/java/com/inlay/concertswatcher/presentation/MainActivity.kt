@@ -1,10 +1,13 @@
 package com.inlay.concertswatcher.presentation
 
+import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.core.view.MenuProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -44,11 +47,31 @@ class MainActivity : ScopeActivity() {
                 menuInflater.inflate(R.menu.top_app_bar, menu)
             }
 
+            @SuppressLint("SourceLockedOrientationActivity")
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                navController.navigate(R.id.action_main_to_searchFragment)
-                supportActionBar?.title = "Search"
-                menuItem.isVisible = false
-                menuItem.isEnabled = false
+                val bottomNavigationView =
+                    findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                when (menuItem.itemId) {
+                    android.R.id.home -> {
+                        navController.navigateUp()
+                        supportActionBar?.title = "Home"
+                        bottomNavigationView.visibility = View.VISIBLE
+                        supportActionBar?.setDisplayShowHomeEnabled(false)
+                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                    }
+                    R.id.search -> {
+                        navController.navigate(R.id.action_main_to_searchFragment)
+                        supportActionBar?.title = "Search"
+                        menuItem.isVisible = false
+                        menuItem.isEnabled = false
+                        bottomNavigationView.visibility = View.GONE
+                        supportActionBar?.setDisplayShowHomeEnabled(true)
+                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+                        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                    }
+                }
                 return true
             }
         })

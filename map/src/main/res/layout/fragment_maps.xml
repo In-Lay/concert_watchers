@@ -16,7 +16,7 @@
             android:id="@+id/v_map"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:contentDescription="Map"
+            android:contentDescription="@string/map"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

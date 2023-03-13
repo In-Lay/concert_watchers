@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.inlay.details.data.models.DetailsDataModel
 import com.inlay.details.data.models.DetailsLocationModel
 import com.inlay.details.data.utils.longDateFormatter
@@ -78,7 +79,9 @@ class AppDetailsViewModel : DetailsViewModel() {
         @JvmStatic
         @BindingAdapter("iconImage")
         fun loadIconImage(view: ImageView, icon: Drawable) {
-            view.load(icon)
+            view.load(icon) {
+                transformations(RoundedCornersTransformation(50F))
+            }
         }
     }
 }

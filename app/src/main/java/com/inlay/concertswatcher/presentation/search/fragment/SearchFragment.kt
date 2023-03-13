@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
         )
         binding.viewModel = searchViewModel
         binding.dateButton.visibility = GONE
-
+//        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         searchViewModel.changeOnDatePickerClickedFlagToFalse()
         return binding.root
     }
